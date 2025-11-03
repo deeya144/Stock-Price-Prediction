@@ -12,7 +12,9 @@ This project builds an interactive dashboard using **Streamlit** and **LSTM Neur
 
 - 🔮 Predict future stock prices  
 - 💡 Visualize technical indicators like **SMA** and **RSI**  
-- 💼 Simulate the future value of investments  
+- 💼 Simulate the future value of investments
+- 🧪 Validate model & data integrity with **Pytest**  
+- 🧭 Automate UI validation with **Selenium WebDriver**  
 - 📊 Offer investors insights for smarter financial decisions
 
 ---
@@ -27,13 +29,9 @@ This project builds an interactive dashboard using **Streamlit** and **LSTM Neur
 | Pandas & NumPy 🧮 | Data manipulation & preprocessing      |
 | Matplotlib 📉   | Visualization of trends & indicators   |
 | scikit-learn 🔍 | Data scaling & model evaluation        |
+| **Pytest 🧪** | Automated data and functional testing |
+| **Selenium 🧭** | UI automation & dashboard interaction testing |
 
 ---
 
-## 📂 Project Structure
 
-```bash
-├── app.py                      # Streamlit app script
-├── EW-MAX.csv                  # Stock data (Date, Open, Close, etc.)
-├── Stock_Prediction.ipynb      # Notebook for EDA & LSTM modeling
-└── README.md                   # Project documentation

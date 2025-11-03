@@ -23,14 +23,22 @@ investment = st.slider("💰 Portfolio Investment (INR)", 1000, 100000, 10000, s
 df['SMA_10'] = df['Close'].rolling(window=10).mean()
 df['SMA_50'] = df['Close'].rolling(window=50).mean()
 
-def compute_rsi(data, window=14):
-    delta = data.diff()
-    gain = delta.where(delta > 0, 0)
-    loss = -delta.where(delta < 0, 0)
-    avg_gain = gain.rolling(window).mean()
-    avg_loss = loss.rolling(window).mean()
+def compute_rsi(series, window=14):
+    delta = series.diff()
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+
+    avg_gain = gain.rolling(window=window, min_periods=window).mean()
+    avg_loss = loss.rolling(window=window, min_periods=window).mean()
+
     rs = avg_gain / avg_loss
-    return 100 - (100 / (1 + rs))
+    rsi = 100 - (100 / (1 + rs))
+
+    # Handle divide-by-zero and NaN safely
+    rsi = rsi.fillna(0)
+    rsi = np.clip(rsi, 0, 100)
+
+    return rsi
 
 df['RSI'] = compute_rsi(df['Close'])
 df.dropna(inplace=True)
